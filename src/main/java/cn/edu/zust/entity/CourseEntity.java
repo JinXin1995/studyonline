@@ -18,6 +18,7 @@ public class CourseEntity {
     private Integer chapterNum;
     private String coverPic;
     private Byte status;
+    private int typeId;
 
     @Id
     @Column(name = "id")
@@ -107,6 +108,16 @@ public class CourseEntity {
 
     public void setStatus(Byte status) {
         this.status = status;
+    }
+
+    @Basic
+    @Column(name = "type_id")
+    public int getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(int typeId) {
+        this.typeId = typeId;
     }
 
     @Override

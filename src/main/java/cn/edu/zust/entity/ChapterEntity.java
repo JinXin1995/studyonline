@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by King on 2016/8/18 0018.
  */
 @Entity
-@Table(name = "chapter", schema = "studyonline", catalog = "")
+@Table(name = "chapter")
 public class ChapterEntity {
     private int id;
     private Integer number;
@@ -14,6 +14,7 @@ public class ChapterEntity {
     private String content;
     private String videoPath;
     private Byte status;
+    private int courseId;
 
     @Id
     @Column(name = "id")
@@ -73,6 +74,16 @@ public class ChapterEntity {
 
     public void setStatus(Byte status) {
         this.status = status;
+    }
+
+    @Basic
+    @Column(name = "course_id")
+    public int getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
     }
 
     @Override

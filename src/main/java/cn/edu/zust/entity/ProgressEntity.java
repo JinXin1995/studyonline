@@ -10,6 +10,8 @@ import java.sql.Timestamp;
 @Table(name = "progress", schema = "studyonline", catalog = "")
 public class ProgressEntity {
     private int id;
+    private int chapterId;
+    private int userId;
     private Timestamp updateTime;
 
     @Id
@@ -30,6 +32,26 @@ public class ProgressEntity {
 
     public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
+    }
+
+    @Basic
+    @Column(name = "chapter_id")
+    public int getChapterId() {
+        return chapterId;
+    }
+
+    public void setChapterId(int chapterId) {
+        this.chapterId = chapterId;
+    }
+
+    @Basic
+    @Column(name = "user_id")
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Override

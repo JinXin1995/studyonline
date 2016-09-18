@@ -10,6 +10,8 @@ import java.sql.Timestamp;
 @Table(name = "comment", schema = "studyonline", catalog = "")
 public class CommentEntity {
     private int id;
+    private int courseId;
+    private int userId;
     private String content;
     private Timestamp releaseTime;
 
@@ -21,6 +23,26 @@ public class CommentEntity {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Basic
+    @Column(name = "course_id")
+    public int getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
+    }
+
+    @Basic
+    @Column(name = "user_id")
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Basic

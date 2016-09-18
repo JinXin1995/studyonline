@@ -16,6 +16,7 @@ public class UserInfoEntity {
     private String phone;
     private String education;
     private String company;
+    private int userId;
 
     @Id
     @Column(name = "id")
@@ -95,6 +96,16 @@ public class UserInfoEntity {
 
     public void setCompany(String company) {
         this.company = company;
+    }
+
+    @Basic
+    @Column(name = "user_id")
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Override

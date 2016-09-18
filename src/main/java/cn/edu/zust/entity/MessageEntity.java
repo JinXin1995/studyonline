@@ -9,6 +9,8 @@ import javax.persistence.*;
 @Table(name = "message", schema = "studyonline", catalog = "")
 public class MessageEntity {
     private int id;
+    private int senderId;
+    private int reciverId;
     private String content;
 
     @Id
@@ -19,6 +21,26 @@ public class MessageEntity {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Basic
+    @Column(name = "sender_id")
+    public int getSenderId() {
+        return senderId;
+    }
+
+    public void setSenderId(int sender_id) {
+        this.senderId = sender_id;
+    }
+
+    @Basic
+    @Column(name = "reciver_id")
+    public int getReciverId() {
+        return reciverId;
+    }
+
+    public void setReciverId(int reciver_id) {
+        this.reciverId = reciver_id;
     }
 
     @Basic
