@@ -7,41 +7,41 @@ import java.sql.Timestamp;
  * Created by King on 2016/8/18 0018.
  */
 @Entity
-@Table(name = "comment", schema = "studyonline", catalog = "")
+@Table(name = "comment")
 public class CommentEntity {
-    private int id;
-    private int courseId;
-    private int userId;
+    private Integer id;
+    private Integer courseId;
+    private Integer userId;
     private String content;
     private Timestamp releaseTime;
 
     @Id
     @Column(name = "id")
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     @Basic
     @Column(name = "course_id")
-    public int getCourseId() {
+    public Integer getCourseId() {
         return courseId;
     }
 
-    public void setCourseId(int courseId) {
+    public void setCourseId(Integer courseId) {
         this.courseId = courseId;
     }
 
     @Basic
     @Column(name = "user_id")
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

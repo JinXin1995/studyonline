@@ -7,9 +7,9 @@ import java.sql.Timestamp;
  * Created by King on 2016/8/18 0018.
  */
 @Entity
-@Table(name = "course", schema = "studyonline", catalog = "")
+@Table(name = "course")
 public class CourseEntity {
-    private int id;
+    private Integer id;
     private String name;
     private Double star;
     private String introduction;
@@ -18,15 +18,15 @@ public class CourseEntity {
     private Integer chapterNum;
     private String coverPic;
     private Byte status;
-    private int typeId;
+    private Integer typeId;
 
     @Id
     @Column(name = "id")
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -112,11 +112,11 @@ public class CourseEntity {
 
     @Basic
     @Column(name = "type_id")
-    public int getTypeId() {
+    public Integer getTypeId() {
         return typeId;
     }
 
-    public void setTypeId(int typeId) {
+    public void setTypeId(Integer typeId) {
         this.typeId = typeId;
     }
 

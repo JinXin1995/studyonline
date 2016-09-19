@@ -6,9 +6,9 @@ import javax.persistence.*;
  * Created by King on 2016/8/18 0018.
  */
 @Entity
-@Table(name = "user_info", schema = "studyonline", catalog = "")
+@Table(name = "user_info")
 public class UserInfoEntity {
-    private int id;
+    private Integer id;
     private String realname;
     private String cardId;
     private String cardPic;
@@ -16,15 +16,15 @@ public class UserInfoEntity {
     private String phone;
     private String education;
     private String company;
-    private int userId;
+    private Integer userId;
 
     @Id
     @Column(name = "id")
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -39,7 +39,7 @@ public class UserInfoEntity {
     }
 
     @Basic
-    @Column(name = "\r\ncard_id")
+    @Column(name = "card_id")
     public String getCardId() {
         return cardId;
     }
@@ -100,11 +100,11 @@ public class UserInfoEntity {
 
     @Basic
     @Column(name = "user_id")
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

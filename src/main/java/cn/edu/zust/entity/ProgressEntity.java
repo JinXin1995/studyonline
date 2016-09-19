@@ -7,20 +7,20 @@ import java.sql.Timestamp;
  * Created by King on 2016/8/18 0018.
  */
 @Entity
-@Table(name = "progress", schema = "studyonline", catalog = "")
+@Table(name = "progress")
 public class ProgressEntity {
-    private int id;
-    private int chapterId;
-    private int userId;
+    private Integer id;
+    private Integer chapterId;
+    private Integer userId;
     private Timestamp updateTime;
 
     @Id
     @Column(name = "id")
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -36,21 +36,21 @@ public class ProgressEntity {
 
     @Basic
     @Column(name = "chapter_id")
-    public int getChapterId() {
+    public Integer getChapterId() {
         return chapterId;
     }
 
-    public void setChapterId(int chapterId) {
+    public void setChapterId(Integer chapterId) {
         this.chapterId = chapterId;
     }
 
     @Basic
     @Column(name = "user_id")
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

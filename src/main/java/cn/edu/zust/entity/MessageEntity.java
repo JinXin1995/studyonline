@@ -6,40 +6,40 @@ import javax.persistence.*;
  * Created by King on 2016/8/18 0018.
  */
 @Entity
-@Table(name = "message", schema = "studyonline", catalog = "")
+@Table(name = "message")
 public class MessageEntity {
-    private int id;
-    private int senderId;
-    private int reciverId;
+    private Integer id;
+    private Integer senderId;
+    private Integer reciverId;
     private String content;
 
     @Id
     @Column(name = "id")
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     @Basic
     @Column(name = "sender_id")
-    public int getSenderId() {
+    public Integer getSenderId() {
         return senderId;
     }
 
-    public void setSenderId(int sender_id) {
+    public void setSenderId(Integer sender_id) {
         this.senderId = sender_id;
     }
 
     @Basic
     @Column(name = "reciver_id")
-    public int getReciverId() {
+    public Integer getReciverId() {
         return reciverId;
     }
 
-    public void setReciverId(int reciver_id) {
+    public void setReciverId(Integer reciver_id) {
         this.reciverId = reciver_id;
     }
 

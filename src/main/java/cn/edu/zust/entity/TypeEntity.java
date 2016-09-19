@@ -6,18 +6,18 @@ import javax.persistence.*;
  * Created by King on 2016/8/18 0018.
  */
 @Entity
-@Table(name = "type", schema = "studyonline", catalog = "")
+@Table(name = "type")
 public class TypeEntity {
-    private int id;
+    private Integer id;
     private String name;
 
     @Id
     @Column(name = "id")
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

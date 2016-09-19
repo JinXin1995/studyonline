@@ -8,21 +8,21 @@ import javax.persistence.*;
 @Entity
 @Table(name = "chapter")
 public class ChapterEntity {
-    private int id;
+    private Integer id;
     private Integer number;
     private String name;
     private String content;
     private String videoPath;
     private Byte status;
-    private int courseId;
+    private Integer courseId;
 
     @Id
     @Column(name = "id")
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -78,11 +78,11 @@ public class ChapterEntity {
 
     @Basic
     @Column(name = "course_id")
-    public int getCourseId() {
+    public Integer getCourseId() {
         return courseId;
     }
 
-    public void setCourseId(int courseId) {
+    public void setCourseId(Integer courseId) {
         this.courseId = courseId;
     }
 
