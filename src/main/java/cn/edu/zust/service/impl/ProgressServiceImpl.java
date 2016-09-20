@@ -6,10 +6,14 @@ import cn.edu.zust.model.Progress;
 import cn.edu.zust.service.ProgressServiceI;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by King on 2016/9/19 0019.
  */
+@Service
+@Transactional
 public class ProgressServiceImpl implements ProgressServiceI {
     @Autowired
     BaseDaoI<ProgressEntity> progressDao;
