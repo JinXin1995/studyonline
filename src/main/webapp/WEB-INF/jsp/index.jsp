@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +20,7 @@
 	<div class="wrap-1200">
 		<div class="welcome-title">欢迎来到study-online</div>
 		<ul>
-			<li><a href="#">登录注册</a></li>
+			<li><a href="${pageContext.request.contextPath}/login.html">登录注册</a></li>
 			<li><a href="#">讲师申请</a></li>
 			<li><a href=""><i class="fa  fa-question-circle"></i>帮助</a></li>
 			<li><a href=""><i class="fa fa-bell-o"></i>消息</a></li>
