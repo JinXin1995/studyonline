@@ -10,8 +10,9 @@ public class UserInfo {
     private String cardPic;
     private String email;
     private String phone;
-    private String education;
+    private Short education;
     private String company;
+    private String address;
     private User user;
     private Integer userId;
 
@@ -71,11 +72,11 @@ public class UserInfo {
         this.phone = phone;
     }
 
-    public String getEducation() {
+    public Short getEducation() {
         return education;
     }
 
-    public void setEducation(String education) {
+    public void setEducation(Short education) {
         this.education = education;
     }
 
@@ -85,6 +86,14 @@ public class UserInfo {
 
     public void setCompany(String company) {
         this.company = company;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public User getUser() {

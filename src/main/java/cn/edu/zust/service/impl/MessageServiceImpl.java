@@ -20,7 +20,7 @@ public class MessageServiceImpl implements MessageServiceI {
 
     private MessageEntity toEntity(Message model) {
         MessageEntity entity;
-        if(model.getId() == null) {
+        if(model.getId() == null || model.getId() == 0) {
             entity = new MessageEntity();
         } else {
             entity = messageDao.get(MessageEntity.class, model.getId());

@@ -8,7 +8,7 @@ public class User {
     private String username;
     private String password;
     private String nickname;
-    private Byte type;
+    private Short type;
 
     public Integer getId() {
         return id;
@@ -42,11 +42,11 @@ public class User {
         this.nickname = nickname;
     }
 
-    public Byte getType() {
+    public Short getType() {
         return type;
     }
 
-    public void setType(Byte type) {
+    public void setType(Short type) {
         this.type = type;
     }
 }

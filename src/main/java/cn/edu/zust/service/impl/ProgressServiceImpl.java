@@ -20,7 +20,7 @@ public class ProgressServiceImpl implements ProgressServiceI {
 
     private ProgressEntity toEntity(Progress model) {
         ProgressEntity entity;
-        if(model.getId() == null) {
+        if(model.getId() == null || model.getId() == 0) {
             entity = new ProgressEntity();
         } else {
             entity = progressDao.get(ProgressEntity.class, model.getId());

@@ -14,8 +14,9 @@ public class UserInfoEntity {
     private String cardPic;
     private String email;
     private String phone;
-    private String education;
+    private Short education;
     private String company;
+    private String address;
     private Integer userId;
 
     @Id
@@ -80,11 +81,11 @@ public class UserInfoEntity {
 
     @Basic
     @Column(name = "education")
-    public String getEducation() {
+    public Short getEducation() {
         return education;
     }
 
-    public void setEducation(String education) {
+    public void setEducation(Short education) {
         this.education = education;
     }
 
@@ -96,6 +97,16 @@ public class UserInfoEntity {
 
     public void setCompany(String company) {
         this.company = company;
+    }
+
+    @Basic
+    @Column(name = "address")
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     @Basic

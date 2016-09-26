@@ -1,6 +1,6 @@
 /*获得file的值*/
 function getFilename(e){
-	$('#show_file_name').val(e);
+	$('#cardPic').val(e);
 }
 
 /*图片显示*/

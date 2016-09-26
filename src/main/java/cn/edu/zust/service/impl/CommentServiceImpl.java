@@ -20,7 +20,7 @@ public class CommentServiceImpl implements CommentServiceI {
 
     private CommentEntity toEntity(Comment model) {
         CommentEntity entity;
-        if(model.getId() == null) {
+        if(model.getId() == null || model.getId() == 0) {
             entity = new CommentEntity();
         } else {
             entity = commentDao.get(CommentEntity.class, model.getId());

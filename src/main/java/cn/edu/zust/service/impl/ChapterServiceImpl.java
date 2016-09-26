@@ -20,7 +20,7 @@ public class ChapterServiceImpl implements ChapterServiceI {
 
     private ChapterEntity toEntity(Chapter model) {
         ChapterEntity entity;
-        if(model.getId() == null) {
+        if(model.getId() == null || model.getId() == 0) {
             entity = new ChapterEntity();
         } else {
             entity = chapterDao.get(ChapterEntity.class, model.getId());

@@ -20,7 +20,7 @@ public class TypeServiceImpl implements TypeServiceI {
 
     private TypeEntity toEntity(Type model) {
         TypeEntity entity;
-        if(model.getId() == null) {
+        if(model.getId() == null || model.getId() == 0) {
             entity = new TypeEntity();
         } else {
             entity = typeDao.get(TypeEntity.class, model.getId());

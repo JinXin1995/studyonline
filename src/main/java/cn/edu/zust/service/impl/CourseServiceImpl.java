@@ -20,7 +20,7 @@ public class CourseServiceImpl implements CourseServiceI {
 
     private CourseEntity toEntity(Course model) {
         CourseEntity entity;
-        if(model.getId() == null) {
+        if(model.getId() == null || model.getId() == 0) {
             entity = new CourseEntity();
         } else {
             entity = courseDao.get(CourseEntity.class, model.getId());

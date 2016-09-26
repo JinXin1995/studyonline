@@ -21,7 +21,7 @@
 		<div class="welcome-title">欢迎来到study-online</div>
 		<ul>
 			<li><a href="${pageContext.request.contextPath}/login.html">登录注册</a></li>
-			<li><a href="#">讲师申请</a></li>
+			<li><a href="${pageContext.request.contextPath}/teacher/apply.html">讲师申请</a></li>
 			<li><a href=""><i class="fa  fa-question-circle"></i>帮助</a></li>
 			<li><a href=""><i class="fa fa-bell-o"></i>消息</a></li>
 			<li class="udown-tip">
@@ -663,7 +663,7 @@
 		<li><a href="#">讲师招聘</a></li>
 		<li><a href="#">网站地图</a></li>
 
-		<li class="pull-right"><a href="#">讲师申请</a></li>
+		<li class="pull-right"><a href="${pageContext.request.contextPath}/teacher/apply.html">讲师申请</a></li>
 		<li class="pull-right"><a href="#">管理员登录</a></li>
 	</ul>
 	<p>备案号:1234567890123456789</p>

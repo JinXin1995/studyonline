@@ -2,6 +2,7 @@ package cn.edu.zust.service.impl;
 
 import cn.edu.zust.dao.BaseDaoI;
 import cn.edu.zust.entity.UserEntity;
+import cn.edu.zust.info.UserType;
 import cn.edu.zust.model.JsonResult;
 import cn.edu.zust.model.User;
 import cn.edu.zust.service.UserServiceI;
@@ -79,7 +80,7 @@ public class UserServiceImpl implements UserServiceI {
 
     private UserEntity toEntity(User model) {
         UserEntity entity;
-        if(model.getId() == null) {
+        if(model.getId() == null || model.getId() == 0) {
             entity = new UserEntity();
         } else {
             entity = userDao.get(UserEntity.class, model.getId());

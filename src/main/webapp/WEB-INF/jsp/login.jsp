@@ -43,7 +43,7 @@
                	 </div>
                	 <div class="input_div">
                	 	<i class="fa fa-lock"></i>
-               	 	<input type="text" value="" name="password" placeholder="请输入密码">
+               	 	<input type="password" value="" name="password" placeholder="请输入密码">
                	 </div>
                	 <div class="input_div"  style="width:200px;">
                	 	<i class="fa fa-lock"></i>
@@ -62,19 +62,30 @@
            	<!--注册-->
            	<div role="tabpanel" class="tab-pane" id="login_signUp">
                <form id="register_form">
-                   <input type="hidden" name="type" value="1">
                	 <div class="input_div">
                	 	<i class="fa fa-user"></i>
                	 	<input type="text" value="" name="username" placeholder="请输入账号">
                	 </div>
                	 <div class="input_div">
                	 	<i class="fa fa-lock"></i>
-               	 	<input type="text" value="" name="password" placeholder="请输入密码">
+               	 	<input type="password" value="" name="password" placeholder="请输入密码">
                	 </div>
                	 <div class="input_div">
                	 	<i class="fa fa-lock"></i>
-               	 	<input type="text" value="" name="pwdcheck" placeholder="确认密码">
+               	 	<input type="password" value="" name="pwdcheck" placeholder="确认密码">
                	 </div>
+				   <!-- 身份 -->
+				   <p class="radio-wrapper">
+					   <!-- <label class="radio-inline">身份</label> -->
+					   <label class="radio-inline">
+						   <input type="radio" name="type" value="1" checked>会员
+					   </label>
+					   <label class="radio-inline">
+						   <input type="radio" name="type"  value="3"> 讲师
+					   </label>
+				   </p>
+
+				   <!-- /身份 -->
                	 <div class="input_div"  style="width:200px;">
                	 	<i class="fa fa-lock"></i>
                	 	<input type="text" value="" placeholder="请输入验证码" style="width:165px;">
@@ -127,6 +138,8 @@
     }
 
     function login() {
+		console.log($('#login_form').serialize());
+		console.log($('input[name="username"]').val());
         $.ajax({
             async:false,
             type:'POST',

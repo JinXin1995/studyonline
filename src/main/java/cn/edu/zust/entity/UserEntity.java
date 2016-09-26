@@ -12,7 +12,7 @@ public class UserEntity {
     private String username;
     private String password;
     private String nickname;
-    private Byte type;
+    private Short type;
 
     @Id
     @Column(name = "id")
@@ -57,11 +57,11 @@ public class UserEntity {
 
     @Basic
     @Column(name = "type")
-    public Byte getType() {
+    public Short getType() {
         return type;
     }
 
-    public void setType(Byte type) {
+    public void setType(Short type) {
         this.type = type;
     }
 
