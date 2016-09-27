@@ -11,7 +11,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Random;
 
 /**
@@ -23,7 +25,7 @@ public class UploadServiceImpl implements UploadServiceI {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Override
     public JsonResult uploadPic(MultipartFile file) {
-        return upload(file, UploadInfo.PIC_PATH);
+        return upload(file, UploadInfo.PIC_PATH, UploadInfo.ALLOW_PIC_TYPE);
     }
 
     /**
@@ -46,7 +48,10 @@ public class UploadServiceImpl implements UploadServiceI {
         return fileName;
     }
 
-    protected JsonResult upload(MultipartFile file, String subpath) {
+    protected JsonResult upload(MultipartFile file, String subpath, String[] allowType) {
+        if(!checkFileType(file.getOriginalFilename(), allowType)) {
+            return new JsonResult(false, "该文件类型不不允许上传");
+        }
         String pathStr = UploadInfo.BASE_PATH + subpath;
         File path = new File(pathStr);
         if(!path.exists()) {
@@ -81,5 +86,22 @@ public class UploadServiceImpl implements UploadServiceI {
 
         JsonResult result = new JsonResult(true, "上传成功！", subpath + picStr);
         return result;
+    }
+
+    /**
+     * 文件类型判断
+     *
+     * @param fileName
+     * @return
+     */
+    protected boolean checkFileType(String fileName, String[] allowFiles) {
+        Iterator<String> type = Arrays.asList(allowFiles).iterator();
+        while (type.hasNext()) {
+            String ext = type.next();
+            if (fileName.toLowerCase().endsWith(ext)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

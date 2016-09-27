@@ -67,7 +67,7 @@
          </div>
          <div class="tline">
            <label for=""><i class="fa  fa-paperclip"></i>附件上传</label>
-           <input type="text" id="cardPic" name="cardPic" readonly style="width:180px;margin-right:20px;">
+           <input type="text" id="show_file_name" name="cardPic" readonly style="width:180px;margin-right:20px;">
            <button class="btn-liulan" type="button" onclick="$('#file_wrap').click()">浏览···</button>
          </div>
          <div class="tline">
@@ -111,7 +111,7 @@
             success: function (data) {
                 if(typeof(data)!='object') data=JSON.parse(data);
                 if(data&&data.success){
-                    $('#cardPic').val(data.data);
+                    $('#show_file_name').val(data.data);
                     console.log(data.data,data.success,data.message);
                     ret=true;
                 }

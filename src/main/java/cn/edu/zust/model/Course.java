@@ -9,14 +9,16 @@ public class Course {
     private Integer id;
     private String name;
     private Double star;
+    private Short difficulty;
     private String introduction;
     private Timestamp updateTime;
     private Timestamp createTime;
     private Integer chapterNum;
     private String coverPic;
-    private Byte status;
+    private Short status;
     private Type type;
     private Integer typeId;
+    private Integer teacherId;
 
     public Integer getTypeId() {
         return typeId;
@@ -48,6 +50,14 @@ public class Course {
 
     public void setStar(Double star) {
         this.star = star;
+    }
+
+    public Short getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Short difficulty) {
+        this.difficulty = difficulty;
     }
 
     public String getIntroduction() {
@@ -90,11 +100,11 @@ public class Course {
         this.coverPic = coverPic;
     }
 
-    public Byte getStatus() {
+    public Short getStatus() {
         return status;
     }
 
-    public void setStatus(Byte status) {
+    public void setStatus(Short status) {
         this.status = status;
     }
 
@@ -104,5 +114,13 @@ public class Course {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    public Integer getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(Integer teacherId) {
+        this.teacherId = teacherId;
     }
 }

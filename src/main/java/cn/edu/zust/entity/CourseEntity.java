@@ -12,13 +12,15 @@ public class CourseEntity {
     private Integer id;
     private String name;
     private Double star;
+    private Short difficulty;
     private String introduction;
     private Timestamp updateTime;
     private Timestamp createTime;
     private Integer chapterNum;
     private String coverPic;
-    private Byte status;
+    private Short status;
     private Integer typeId;
+    private Integer teacherId;
 
     @Id
     @Column(name = "id")
@@ -48,6 +50,16 @@ public class CourseEntity {
 
     public void setStar(Double star) {
         this.star = star;
+    }
+
+    @Basic
+    @Column(name = "difficulty")
+    public Short getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Short difficulty) {
+        this.difficulty = difficulty;
     }
 
     @Basic
@@ -102,11 +114,11 @@ public class CourseEntity {
 
     @Basic
     @Column(name = "status")
-    public Byte getStatus() {
+    public Short getStatus() {
         return status;
     }
 
-    public void setStatus(Byte status) {
+    public void setStatus(Short status) {
         this.status = status;
     }
 
@@ -118,6 +130,16 @@ public class CourseEntity {
 
     public void setTypeId(Integer typeId) {
         this.typeId = typeId;
+    }
+
+    @Basic
+    @Column(name = "teacher_id")
+    public Integer getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(Integer teacherId) {
+        this.teacherId = teacherId;
     }
 
     @Override

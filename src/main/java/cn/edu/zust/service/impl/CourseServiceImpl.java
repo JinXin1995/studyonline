@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 /**
  * Created by King on 2016/9/19 0019.
  */
@@ -17,6 +20,16 @@ import org.springframework.transaction.annotation.Transactional;
 public class CourseServiceImpl implements CourseServiceI {
     @Autowired
     BaseDaoI<CourseEntity> courseDao;
+
+    @Override
+    public Integer save(Course course) {
+        course.setId(0);
+        Timestamp now = new Timestamp(System.currentTimeMillis());
+        course.setUpdateTime(now);
+        course.setCreateTime(now);
+        course.setStatus((short) 0);
+        return (int) courseDao.save(toEntity(course));
+    }
 
     private CourseEntity toEntity(Course model) {
         CourseEntity entity;

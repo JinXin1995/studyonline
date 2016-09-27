@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by King on 2016/9/19 0019.
  */
@@ -17,6 +20,17 @@ import org.springframework.transaction.annotation.Transactional;
 public class TypeServiceImpl implements TypeServiceI {
     @Autowired
     BaseDaoI<TypeEntity> typeDao;
+
+    @Override
+    public List<Type> getTypes() {
+        String hql = "from TypeEntity";
+        List<TypeEntity> typeEntities = typeDao.find(hql);
+        List<Type> types = new ArrayList<>();
+        for(TypeEntity typeEntity : typeEntities) {
+            types.add(toModel(typeEntity));
+        }
+        return types;
+    }
 
     private TypeEntity toEntity(Type model) {
         TypeEntity entity;
