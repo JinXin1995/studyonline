@@ -19,6 +19,51 @@ public class Course {
     private Type type;
     private Integer typeId;
     private Integer teacherId;
+    private Integer chapter;//总的章节数
+    private String statuszhuangtai;//前端显示状态
+    private String teacher;//讲师用户名
+    private Integer study;//学习人数
+    private String typename;//前端显示类型
+
+    public String getTypename() {
+        return typename;
+    }
+
+    public void setTypename(String typename) {
+        this.typename = typename;
+    }
+
+    public Integer getStudy() {
+        return study;
+    }
+
+    public void setStudy(Integer study) {
+        this.study = study;
+    }
+
+    public String getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(String teacher) {
+        this.teacher = teacher;
+    }
+
+    public Integer getChapter() {
+        return chapter;
+    }
+
+    public String getStatuszhuangtai() {
+        return statuszhuangtai;
+    }
+
+    public void setChapter(Integer chapter) {
+        this.chapter = chapter;
+    }
+
+    public void setStatuszhuangtai(String statuszhuangtai) {
+        this.statuszhuangtai = statuszhuangtai;
+    }
 
     public Integer getTypeId() {
         return typeId;

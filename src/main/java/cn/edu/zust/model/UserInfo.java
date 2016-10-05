@@ -15,6 +15,42 @@ public class UserInfo {
     private String address;
     private User user;
     private Integer userId;
+    private String username;//用户名
+    private Integer course;//开课数目
+    private String shenhezhuangtai;//前端显示审核状态
+    private Integer shenhe;//前端判断审核状态
+
+    public Integer getShenhe() {
+        return shenhe;
+    }
+
+    public void setShenhe(Integer shenhe) {
+        this.shenhe = shenhe;
+    }
+
+    public String getShenhezhuangtai() {
+        return shenhezhuangtai;
+    }
+
+    public void setShenhezhuangtai(String shenhezhuangtai) {
+        this.shenhezhuangtai = shenhezhuangtai;
+    }
+
+    public Integer getCourse() {
+        return course;
+    }
+
+    public void setCourse(Integer course) {
+        this.course = course;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public Integer getUserId() {
         return userId;

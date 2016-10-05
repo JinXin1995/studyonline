@@ -12,6 +12,23 @@ public class Chapter {
     private Byte status;
     private Course course;
     private Integer courseId;
+    private String stauszhuangtai;//前端显示状态
+    private Integer study;//学习人数
+
+    public void setStudy(Integer study) {
+        this.study = study;
+    }
+
+    public Integer getStudy() {
+        return study;
+    }
+    public String getStauszhuangtai() {
+        return stauszhuangtai;
+    }
+
+    public void setStauszhuangtai(String stauszhuangtai) {
+        this.stauszhuangtai = stauszhuangtai;
+    }
 
     public Integer getCourseId() {
         return courseId;

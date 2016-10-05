@@ -664,7 +664,7 @@
 		<li><a href="#">网站地图</a></li>
 
 		<li class="pull-right"><a href="${pageContext.request.contextPath}/teacher/apply.html">讲师申请</a></li>
-		<li class="pull-right"><a href="#">管理员登录</a></li>
+		<li class="pull-right"><a href="${pageContext.request.contextPath}/administrator/a-login.html">管理员登录</a></li>
 	</ul>
 	<p>备案号:1234567890123456789</p>
  </div>	
