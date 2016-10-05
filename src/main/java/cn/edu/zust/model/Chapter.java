@@ -1,17 +1,21 @@
 package cn.edu.zust.model;
 
+import java.util.List;
+
 /**
  * Created by King on 2016/9/19 0019.
  */
 public class Chapter {
     private Integer id;
     private Integer number;
+    private Integer subNum;
     private String name;
     private String content;
     private String videoPath;
     private Byte status;
     private Course course;
     private Integer courseId;
+<<<<<<< HEAD
     private String stauszhuangtai;//前端显示状态
     private Integer study;//学习人数
 
@@ -29,6 +33,9 @@ public class Chapter {
     public void setStauszhuangtai(String stauszhuangtai) {
         this.stauszhuangtai = stauszhuangtai;
     }
+=======
+    private List<Chapter> subchapter; //当前章节下的小节
+>>>>>>> f31288a71e24efdf906ebc1527df4a610e3aaadd
 
     public Integer getCourseId() {
         return courseId;
@@ -92,5 +99,21 @@ public class Chapter {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    public Integer getSubNum() {
+        return subNum;
+    }
+
+    public void setSubNum(Integer subNum) {
+        this.subNum = subNum;
+    }
+
+    public List<Chapter> getSubchapter() {
+        return subchapter;
+    }
+
+    public void setSubchapter(List<Chapter> subchapter) {
+        this.subchapter = subchapter;
     }
 }

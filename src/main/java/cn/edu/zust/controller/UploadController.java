@@ -24,4 +24,10 @@ public class UploadController extends BaseController {
     public JsonResult uploadPic(@RequestParam MultipartFile file) {
         return uploadService.uploadPic(file);
     }
+
+    @RequestMapping(value = "video", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult uploadVideo(@RequestParam MultipartFile file) {
+        return uploadService.uploadVideo(file);
+    }
 }

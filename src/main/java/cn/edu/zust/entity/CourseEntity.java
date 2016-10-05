@@ -1,7 +1,7 @@
 package cn.edu.zust.entity;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Created by King on 2016/8/18 0018.
@@ -14,8 +14,8 @@ public class CourseEntity {
     private Double star;
     private Short difficulty;
     private String introduction;
-    private Timestamp updateTime;
-    private Timestamp createTime;
+    private Date updateTime;
+    private Date createTime;
     private Integer chapterNum;
     private String coverPic;
     private Short status;
@@ -74,21 +74,21 @@ public class CourseEntity {
 
     @Basic
     @Column(name = "update_time")
-    public Timestamp getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Timestamp updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 
     @Basic
     @Column(name = "create_time")
-    public Timestamp getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 

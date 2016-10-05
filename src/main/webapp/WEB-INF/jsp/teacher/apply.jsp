@@ -9,8 +9,7 @@
 	<link rel="stylesheet" href="../css/base.css">
 	<link rel="stylesheet" href="../css/login.css">
 
-	<script src="../js/jquery.min.js"></script>
-    <script src="../js/jquery.form.js"></script>
+	<script src="../js/jquery.min.js"></script>hu
 	<script src="../js/bootstrap.min.js"></script>
   <script src="../js/person-set.js"></script>
 </head>
