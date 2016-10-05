@@ -14,7 +14,6 @@
 	<script src="../js/jquery.form.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../js/t-index.js"></script>
-  <script src="../js/person-set.js"></script>
 </head>
 <body>
 <!-- header-nav -->
@@ -99,38 +98,45 @@
              <div class="top step-bg1"></div>
              <div class="content">
                 <form id="courseForm" class="form-step1">
-                   <h4>创建新的课程</h4>
+                   <h4>创建/更新课程</h4>
+                    <input type="hidden" name="id" value="${course.id}">
+                    <input type="hidden" name="star" value="${course.star}">
+                    <input type="hidden" name="updateTime" value="${course.updateTime}">
+                    <input type="hidden" name="createTime" value="${course.createTime}">
+                    <input type="hidden" name="chapterNum" value="${course.chapterNum}">
+                    <input type="hidden" name="status" value="${course.status}">
+                    <input type="hidden" name="teacherId" value="${course.teacherId}">
                    <div class="line">
                       <span>课程名</span>
-                      <input type="text" name="name" value="" placeholder="请输入课程名">
+                      <input type="text" name="name" value="${course.name}" placeholder="请输入课程名">
                    </div>
                    <div class="line">
                       <span>课程方向</span>
                       <select name="typeId" id="">
                           <c:forEach var="type" items="${types }">
-                              <option value="${type.id }">${type.name }</option>
+                              <option value="${type.id }" <c:if test="${type.id == course.typeId}">selected</c:if>>${type.name }</option>
                           </c:forEach>
                       </select>
                    </div>
                    <div class="line" style="height:30px;">
                       <span>课程难度</span>
                        <label class="radio-inline">
-                         <input type="radio" name="difficulty" value="0" checked>初级
+                         <input type="radio" name="difficulty" value="0" <c:if test="${course.difficulty == 0}">checked</c:if>>初级
                       </label>
                       <label class="radio-inline">
-                         <input type="radio" name="difficulty" value="1">中级
+                         <input type="radio" name="difficulty" value="1" <c:if test="${course.difficulty == 1}">checked</c:if>>中级
                       </label>
                       <label class="radio-inline">
-                         <input type="radio" name="difficulty" value="2">高级
+                         <input type="radio" name="difficulty" value="2" <c:if test="${course.difficulty == 2}">checked</c:if>>高级
                       </label> 
                    </div>
                    <div class="line">
                       <span>课程介绍</span>
-                      <textarea name="introduction" id="" cols="30" rows="10"></textarea>
+                      <textarea name="introduction" cols="30" rows="10">${course.introduction}</textarea>
                    </div>
                    <div class="line">
                       <span>封面图片</span>
-                      <input type="text" id="show_file_name" name="coverPic" style="width:300px;">
+                      <input type="text" id="show_file_name" name="coverPic" value="${course.coverPic}" style="width:300px;">
                       <button class="btn-liulan" type="button" onclick="$('#file_wrap').click()">浏览···</button>
                    </div>
                    <div class="line">
@@ -173,6 +179,11 @@
 <!-- /footer -->
 </body>
 <script>
+    var file_changed=false;
+    function getFilename(e){
+        file_changed=true;
+        $('#show_file_name').val(e);
+    }
     function uploadPic(){
         var ret=false;
         $('#uploadPicForm').ajaxSubmit({
@@ -192,10 +203,13 @@
     }
 
     function addCourse(){
-        var tmp=uploadPic();//reportUrl
-        if(tmp==false){
-            return false;
+        if(file_changed) {
+            var tmp = uploadPic();//reportUrl
+            if (tmp == false) {
+                return false;
+            }
         }
+        file_changed=false;
 
         $.ajax({
             async:false,
@@ -205,7 +219,7 @@
             success:function(data){
                 if(typeof(data)!="object") data=JSON.parse(data);
                 if(data&&data.success){
-
+                    window.location.href="${pageContext.request.contextPath}/teacher/home.html";
                 }else
                     alert("保存失败！");
             }

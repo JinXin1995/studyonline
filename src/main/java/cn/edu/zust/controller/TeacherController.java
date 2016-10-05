@@ -30,6 +30,15 @@ public class TeacherController extends BaseController {
     @Autowired
     private ChapterServiceI chapterService;
 
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    public ModelAndView homePage(HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("teacher/home");
+        mav.addObject("courses", courseService.getByTeacher(user.getId()));
+        return mav;
+    }
+
     @RequestMapping(value = "/apply", method = RequestMethod.GET)
     public String applyPage() {
         return "teacher/apply";
@@ -43,10 +52,11 @@ public class TeacherController extends BaseController {
         return new JsonResult(true, "保存成功");
     }
 
-    @RequestMapping(value = "addCourse", method = RequestMethod.GET)
-    public ModelAndView addCoursePage() {
+    @RequestMapping(value = "/addCourse", method = RequestMethod.GET)
+    public ModelAndView addCoursePage(@RequestParam(defaultValue = "0") Integer courseId) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("teacher/add-course");
+        mav.addObject("course", courseService.get(courseId));
         mav.addObject("types", typeService.getTypes());
         return mav;
     }
@@ -60,7 +70,14 @@ public class TeacherController extends BaseController {
         return new JsonResult(true, "保存成功");
     }
 
-    @RequestMapping(value = "addChapter", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteCourse", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult deleteCourse(Integer courseId, HttpSession session) {
+        User currentUser = (User) session.getAttribute("user");
+        return courseService.delete(courseId, currentUser.getId());
+    }
+
+    @RequestMapping(value = "/addChapter", method = RequestMethod.GET)
     public ModelAndView addChapterPage(@RequestParam Integer courseId) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("teacher/add-chapter");
