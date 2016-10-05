@@ -28,6 +28,11 @@ public class UploadServiceImpl implements UploadServiceI {
         return upload(file, UploadInfo.PIC_PATH, UploadInfo.ALLOW_PIC_TYPE);
     }
 
+    @Override
+    public JsonResult uploadVideo(MultipartFile file) {
+        return upload(file, UploadInfo.VIDEO_PATH, UploadInfo.ALLOW_VIDEO_TYPE);
+    }
+
     /**
      * 获取文件扩展名
      *

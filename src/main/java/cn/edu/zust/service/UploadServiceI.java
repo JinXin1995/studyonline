@@ -13,4 +13,11 @@ public interface UploadServiceI {
      * @return
      */
     JsonResult uploadPic(MultipartFile file);
+
+    /**
+     * 上传视频到服务器
+     * @param file
+     * @return
+     */
+    JsonResult uploadVideo(MultipartFile file);
 }

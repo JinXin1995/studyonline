@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class ChapterEntity {
     private Integer id;
     private Integer number;
+    private Integer subNum;
     private String name;
     private String content;
     private String videoPath;
@@ -34,6 +35,16 @@ public class ChapterEntity {
 
     public void setNumber(Integer number) {
         this.number = number;
+    }
+
+    @Basic
+    @Column(name = "sub_num")
+    public Integer getSubNum() {
+        return subNum;
+    }
+
+    public void setSubNum(Integer subNum) {
+        this.subNum = subNum;
     }
 
     @Basic

@@ -7,4 +7,11 @@ import cn.edu.zust.model.Course;
  */
 public interface CourseServiceI {
     Integer save(Course course);
+
+    /**
+     * 根据id获取课程的model
+     * @param id
+     * @return
+     */
+    Course get(Integer id);
 }

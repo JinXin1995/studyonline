@@ -31,6 +31,11 @@ public class CourseServiceImpl implements CourseServiceI {
         return (int) courseDao.save(toEntity(course));
     }
 
+    @Override
+    public Course get(Integer id) {
+        return toModel(courseDao.get(CourseEntity.class, id));
+    }
+
     private CourseEntity toEntity(Course model) {
         CourseEntity entity;
         if(model.getId() == null || model.getId() == 0) {
@@ -43,6 +48,9 @@ public class CourseServiceImpl implements CourseServiceI {
     }
 
     private Course toModel(CourseEntity entity) {
+        if (entity == null) {
+            return null;
+        }
         Course model = new Course();
         BeanUtils.copyProperties(entity, model);
         return model;
