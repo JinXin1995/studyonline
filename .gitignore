@@ -6,4 +6,4 @@
 .idea/
 studyonline.iml
 src/main/webapp/upload/
-resources/config.properties
+src/main/resources/config.properties

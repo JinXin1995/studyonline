@@ -15,7 +15,6 @@ public class Chapter {
     private Byte status;
     private Course course;
     private Integer courseId;
-<<<<<<< HEAD
     private String stauszhuangtai;//前端显示状态
     private Integer study;//学习人数
 
@@ -33,9 +32,7 @@ public class Chapter {
     public void setStauszhuangtai(String stauszhuangtai) {
         this.stauszhuangtai = stauszhuangtai;
     }
-=======
     private List<Chapter> subchapter; //当前章节下的小节
->>>>>>> f31288a71e24efdf906ebc1527df4a610e3aaadd
 
     public Integer getCourseId() {
         return courseId;
