@@ -2,9 +2,11 @@ package cn.edu.zust.service.impl;
 
 import cn.edu.zust.dao.BaseDaoI;
 import cn.edu.zust.entity.CourseEntity;
+import cn.edu.zust.entity.TypeEntity;
 import cn.edu.zust.model.Course;
 import cn.edu.zust.model.JsonResult;
 import cn.edu.zust.service.CourseServiceI;
+import cn.edu.zust.service.TypeServiceI;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,8 @@ import java.util.*;
 public class CourseServiceImpl implements CourseServiceI {
     @Autowired
     BaseDaoI<CourseEntity> courseDao;
+    @Autowired
+    TypeServiceI typeService;
 
     @Override
     public void save(Course course) {
@@ -84,6 +88,7 @@ public class CourseServiceImpl implements CourseServiceI {
         }
         Course model = new Course();
         BeanUtils.copyProperties(entity, model);
+        model.setType(typeService.get(model.getTypeId()));
         return model;
     }
 }

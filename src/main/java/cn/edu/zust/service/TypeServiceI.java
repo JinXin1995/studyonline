@@ -13,4 +13,11 @@ public interface TypeServiceI {
      * @return
      */
     List<Type> getTypes();
+
+    /**
+     * 根据id返回type
+     * @param id
+     * @return
+     */
+    Type get(Integer id);
 }

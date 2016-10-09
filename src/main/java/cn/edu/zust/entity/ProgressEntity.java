@@ -1,5 +1,8 @@
 package cn.edu.zust.entity;
 
+import cn.edu.zust.model.Chapter;
+import cn.edu.zust.model.Course;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -10,6 +13,7 @@ import java.sql.Timestamp;
 @Table(name = "progress")
 public class ProgressEntity {
     private Integer id;
+    private Integer courseId;
     private Integer chapterId;
     private Integer userId;
     private Timestamp updateTime;
@@ -22,6 +26,16 @@ public class ProgressEntity {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    @Basic
+    @Column(name = "course_id")
+    public Integer getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(Integer courseId) {
+        this.courseId = courseId;
     }
 
     @Basic

@@ -5,6 +5,7 @@ import cn.edu.zust.entity.UserEntity;
 import cn.edu.zust.info.UserType;
 import cn.edu.zust.model.JsonResult;
 import cn.edu.zust.model.User;
+import cn.edu.zust.service.UserInfoServiceI;
 import cn.edu.zust.service.UserServiceI;
 import cn.edu.zust.util.PasswdKit;
 import org.springframework.beans.BeanUtils;
@@ -24,6 +25,8 @@ import java.util.Map;
 public class UserServiceImpl implements UserServiceI {
     @Autowired
     BaseDaoI<UserEntity> userDao;
+    @Autowired
+    UserInfoServiceI userInfoService;
 
     public Integer save(User user) {
         return (Integer) userDao.save(toEntity(user));
@@ -78,6 +81,31 @@ public class UserServiceImpl implements UserServiceI {
         return result.get(0);
     }
 
+    @Override
+    public void updateInfo(Integer userId, String nickname, String intro) {
+        UserEntity user = userDao.get(UserEntity.class, userId);
+        user.setNickname(nickname);
+        user.setIntro(intro);
+        userDao.update(user);
+    }
+
+    @Override
+    public JsonResult updatePWD(Integer userId, String old, String newPWD, String repeat) {
+        if(newPWD == null || "".equals(newPWD)) {
+            return new JsonResult(false, "密码不能为空");
+        }
+        if(!newPWD.equals(repeat)) {
+            return new JsonResult(false, "两次输入的密码不一致！");
+        }
+        UserEntity user = userDao.get(UserEntity.class, userId);
+        if (PasswdKit.validatePassword(old, user.getPassword())) {
+            user.setPassword(PasswdKit.entryptPassword(newPWD));
+            userDao.update(user);
+            return new JsonResult(true, "密码修改成功！");
+        }
+        return new JsonResult(false, "原密码错误！");
+    }
+
     private UserEntity toEntity(User model) {
         UserEntity entity;
         if(model.getId() == null || model.getId() == 0) {
@@ -92,6 +120,10 @@ public class UserServiceImpl implements UserServiceI {
     private User toModel(UserEntity entity) {
         User model = new User();
         BeanUtils.copyProperties(entity, model);
+        if (model.getNickname() == null || "".equals(model.getNickname())) {
+            model.setNickname(model.getUsername());
+        }
+        model.setInfo(userInfoService.getByUser(model.getId()));
         return model;
     }
 }

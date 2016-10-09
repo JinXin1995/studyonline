@@ -1,10 +1,13 @@
 package cn.edu.zust.service.impl;
 
+import cn.edu.zust.dao.BaseDaoI;
+import cn.edu.zust.entity.UserEntity;
 import cn.edu.zust.info.UploadInfo;
 import cn.edu.zust.model.JsonResult;
 import cn.edu.zust.service.UploadServiceI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,9 +26,24 @@ import java.util.Random;
 @Transactional
 public class UploadServiceImpl implements UploadServiceI {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @Autowired
+    BaseDaoI<UserEntity> userDao;
+
     @Override
     public JsonResult uploadPic(MultipartFile file) {
-        return upload(file, UploadInfo.PIC_PATH, UploadInfo.ALLOW_PIC_TYPE);
+        return upload(file, UploadInfo.DP_PATH, UploadInfo.ALLOW_PIC_TYPE);
+    }
+
+    @Override
+    public JsonResult uploadDp(MultipartFile file, Integer userId) {
+        JsonResult result = upload(file, UploadInfo.PIC_PATH, UploadInfo.ALLOW_PIC_TYPE);
+        if(result.getSuccess()) {
+            UserEntity user = userDao.get(UserEntity.class, userId);
+            user.setDpPath((String) result.getData());
+            userDao.update(user);
+        }
+        return result;
     }
 
     @Override

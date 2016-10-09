@@ -9,6 +9,9 @@ public class User {
     private String password;
     private String nickname;
     private Short type;
+    private String intro;
+    private String dpPath;
+    private UserInfo info;
 
     public Integer getId() {
         return id;
@@ -48,5 +51,29 @@ public class User {
 
     public void setType(Short type) {
         this.type = type;
+    }
+
+    public UserInfo getInfo() {
+        return info;
+    }
+
+    public String getIntro() {
+        return intro;
+    }
+
+    public String getDpPath() {
+        return dpPath;
+    }
+
+    public void setDpPath(String dpPath) {
+        this.dpPath = dpPath;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro;
+    }
+
+    public void setInfo(UserInfo info) {
+        this.info = info;
     }
 }

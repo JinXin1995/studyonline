@@ -17,10 +17,19 @@ public interface ChapterServiceI {
     List<Chapter> getChapters(Integer courseId);
 
     /**
+     * 返回章节所在的课程的id
+     * @param chapterId
+     * @return
+     */
+    Integer getCourseId(Integer chapterId);
+
+    /**
      * 删除章节及其下的小节/删除小节
      * @param id
      */
     void delete(int id);
+
+    Chapter get(Integer id);
 
     /**
      * 获取课程的章节数（不包括小节）

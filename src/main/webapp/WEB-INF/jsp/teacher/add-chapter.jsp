@@ -34,10 +34,9 @@
 			   	  	</div>
 			   	  	<div class="right">
 			   	  		<div class="head">
-			   	  			<p>username</p>
-			   	  			<span>等级：78</span>
+			   	  			<p>${sessionScope.user.nickname}</p>
 			   	  		</div>
-			   	  		<p>过春风十里,尽荞麦青青</p>
+			   	  		<p>${sessionScope.user.intro}</p>
 			   	  	</div>
 			   	  </div>
 			   	  <!-- bottom -->

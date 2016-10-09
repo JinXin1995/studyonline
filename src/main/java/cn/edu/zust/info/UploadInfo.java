@@ -17,6 +17,11 @@ public class UploadInfo {
     public final static String PIC_PATH = "pic/";
 
     /**
+     * 头像根路径
+     */
+    public final static String DP_PATH = "dp/";
+
+    /**
      * 视频根路径
      */
     public final static String VIDEO_PATH = "video/";

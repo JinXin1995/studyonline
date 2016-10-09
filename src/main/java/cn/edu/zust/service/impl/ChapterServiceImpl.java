@@ -85,6 +85,12 @@ public class ChapterServiceImpl implements ChapterServiceI {
     }
 
     @Override
+    public Integer getCourseId(Integer chapterId) {
+        ChapterEntity chapterEntity = chapterDao.get(ChapterEntity.class, chapterId);
+        return chapterEntity.getCourseId();
+    }
+
+    @Override
     public Integer getChapterNum(Integer courseId) {
         String hql = "from ChapterEntity where courseId=:courseId and subNum=0";    //获取章节
         Map<String, Object> value = new HashMap<>();
@@ -101,6 +107,11 @@ public class ChapterServiceImpl implements ChapterServiceI {
         value.put("number", number);
         List<ChapterEntity> chapterEntities = chapterDao.find(hql, value);
         return chapterEntities.size();
+    }
+
+    @Override
+    public Chapter get(Integer chapterId) {
+        return toModel(chapterDao.get(ChapterEntity.class, chapterId));
     }
 
     private ChapterEntity toEntity(Chapter model) {

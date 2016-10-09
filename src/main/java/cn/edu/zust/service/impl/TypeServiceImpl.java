@@ -32,6 +32,11 @@ public class TypeServiceImpl implements TypeServiceI {
         return types;
     }
 
+    @Override
+    public Type get(Integer id) {
+        return toModel(typeDao.get(TypeEntity.class, id));
+    }
+
     private TypeEntity toEntity(Type model) {
         TypeEntity entity;
         if(model.getId() == null || model.getId() == 0) {

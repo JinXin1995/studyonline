@@ -35,4 +35,22 @@ public interface UserServiceI {
      * @return
      */
     JsonResult login(User user);
+
+    /**
+     * 更新昵称和简介
+     * @param userId
+     * @param nickname
+     * @param intro
+     */
+    void updateInfo(Integer userId, String nickname, String intro);
+
+    /**
+     * 更新密码
+     * @param userId
+     * @param old
+     * @param newPWD
+     * @param repeat
+     * @return
+     */
+    JsonResult updatePWD(Integer userId, String old, String newPWD, String repeat);
 }

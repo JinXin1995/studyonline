@@ -12,6 +12,8 @@ public class UserEntity {
     private String username;
     private String password;
     private String nickname;
+    private String intro;
+    private String dpPath;
     private Short type;
 
     @Id
@@ -56,6 +58,16 @@ public class UserEntity {
     }
 
     @Basic
+    @Column(name = "intro")
+    public String getIntro() {
+        return intro;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro;
+    }
+
+    @Basic
     @Column(name = "type")
     public Short getType() {
         return type;
@@ -63,6 +75,16 @@ public class UserEntity {
 
     public void setType(Short type) {
         this.type = type;
+    }
+
+    @Basic
+    @Column(name = "dp_path")
+    public String getDpPath() {
+        return dpPath;
+    }
+
+    public void setDpPath(String dpPath) {
+        this.dpPath = dpPath;
     }
 
     @Override

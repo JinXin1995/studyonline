@@ -57,4 +57,22 @@ public class LogController extends BaseController {
         }
         return result;
     }
+
+    @RequestMapping("/home")
+    public String homePage(HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if(user.getType() == UserType.STUDENT) {
+            return "redirect:study/home.html";
+        } else if(user.getType() == UserType.TEACHER) {
+            return "redirect:teacher/home.html";
+        } else {
+            return "redirect:login.html";
+        }
+    }
+
+    @RequestMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:index.html";
+    }
 }

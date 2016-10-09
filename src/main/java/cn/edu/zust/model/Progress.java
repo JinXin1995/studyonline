@@ -7,11 +7,29 @@ import java.sql.Timestamp;
  */
 public class Progress {
     private Integer id;
+    private Course course;
+    private Integer courseId;
     private Chapter chapter;
     private Integer chapterId;
     private User user;
     private Integer userId;
     private Timestamp updateTime;
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public Integer getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(Integer courseId) {
+        this.courseId = courseId;
+    }
 
     public Integer getChapterId() {
         return chapterId;
