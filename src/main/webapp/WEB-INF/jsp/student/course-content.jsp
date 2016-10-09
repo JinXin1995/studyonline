@@ -96,7 +96,7 @@
 <div class="main-part">
 	<div class="wrap-1200">
 		<!-- 左侧评论区 -->
-		<div class="main-partL">
+		<%-- <div class="main-partL">
 			<ul class="c-list">
 			    <li class="c-chanel">课程章节</li>
 				<c:forEach var="chapter" items="${chapters}">
@@ -109,7 +109,32 @@
 				</c:forEach>
 			</ul>
 
+		</div> --%>
+		
+		<!-- 左侧评论区 -->
+		
+		<div class="main-partL">
+			<ul class="c-list">
+			    <li class="c-chanel">课程章节</li>
+                    <c:forEach var="chapter" items="${chapters}">
+						<div class="c-chapter">
+							<h3>
+								<i class="fa fa-reorder left"></i>
+								<strong>第${chapter.number}章 ${chapter.name }</strong>
+								<i class="fa fa-plus right"></i>
+							</h3>
+						</div>
+						<ul class='c-chapter-list'>
+							<c:forEach var="sub" items="${chapter.subchapter}">
+								<li><a href="${pageContext.request.contextPath}/study/learning.html?id=${sub.id}">${sub.number}.${sub.subNum} ${sub.name }</a></li>
+							</c:forEach>
+						</ul>
+					</c:forEach>
+			</ul>
+
 		</div>
+		
+		
 		<!-- 右侧评论区 -->
 		<div class="main-partR">
 			<!-- 讲师信息 -->
