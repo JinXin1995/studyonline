@@ -2,6 +2,7 @@ package cn.edu.zust.service;
 
 import cn.edu.zust.model.Course;
 import cn.edu.zust.model.JsonResult;
+import cn.edu.zust.model.Page;
 
 import java.util.List;
 
@@ -32,4 +33,6 @@ public interface CourseServiceI {
      * @return
      */
     List<Course> getByTeacher(int teacherId);
+
+    Page<Course> getByType(int typeId, int page);
 }

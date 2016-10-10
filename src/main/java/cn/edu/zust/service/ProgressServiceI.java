@@ -15,7 +15,7 @@ public interface ProgressServiceI {
     JsonResult delete(Integer userId, Integer progressId);
 
     /**
-     * 根据课程与用户获取进度，若无记录，则返回id为0，courseId与userId为给定值的Progress对象
+     * 根据课程与用户获取进度，若无记录，则返回id为0，courseId与userId为给定值,chapterId为课程第一章第一节的Progress对象
      * @param courseId
      * @param userId
      * @return

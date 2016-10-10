@@ -14,6 +14,8 @@ public interface UserServiceI {
      */
     Integer save(User user);
 
+    User get(int id);
+
     /**
      * 检查用户名是否已被使用
      * @param username

@@ -9,7 +9,8 @@
 	<link rel="stylesheet" href="../css/base.css">
 	<link rel="stylesheet" href="../css/login.css">
 
-	<script src="../js/jquery.min.js"></script>hu
+	<script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery.form.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
   <script src="../js/person-set.js"></script>
 </head>
@@ -103,6 +104,11 @@
 
 </body>
 <script>
+    var file_changed=false;
+    function getFilename(e){
+        file_changed=true;
+        $('#show_file_name').val(e);
+    }
     function uploadPic(){
         var ret=false;
         $('#uploadPicForm').ajaxSubmit({
@@ -122,10 +128,13 @@
     }
 
     function aplly(){
-        var tmp=uploadPic();//reportUrl
-        if(tmp==false){
-            return false;
+        if(file_changed) {
+            var tmp = uploadPic();//reportUrl
+            if (tmp == false) {
+                return false;
+            }
         }
+        file_changed=false;
 
         $.ajax({
             async:false,
@@ -135,7 +144,8 @@
             success:function(data){
                 if(typeof(data)!="object") data=JSON.parse(data);
                 if(data&&data.success){
-
+                    alert("申请成功，请耐心等待审核通过。")
+                    window.location.href='${pageContext.request.contextPath}/logout.html';
                 }else
                     alert("保存失败！");
             }

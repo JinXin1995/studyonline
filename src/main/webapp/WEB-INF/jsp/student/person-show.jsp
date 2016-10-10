@@ -22,32 +22,33 @@
 	<div class="wrap-1200">
 		<div class="welcome-title">欢迎来到study-online</div>
 		<ul>
-			<li><a href="#">登录注册</a></li>
-			<li><a href=""><i class="fa  fa-question-circle"></i>帮助</a></li>
-			<li><a href=""><i class="fa fa-bell-o"></i>消息</a></li>
-			<li class="udown-tip">
-			   <a href="javascript:void(0)">我的</a>
-			   <div class="udown-message">
-			   <!-- top -->
-			   	  <div class="udown-top">
-			   	  	<div class="left">
-			   	  		<a href="#"><img src="../images/user-img.jpg" alt=""></a>
-			   	  	</div>
-			   	  	<div class="right">
-			   	  		<div class="head">
-			   	  			<p>username</p>
-			   	  			<span>等级：78</span>
-			   	  		</div>
-			   	  		<p>过春风十里,尽荞麦青青</p>
-			   	  	</div>
-			   	  </div>
-			   	  <!-- bottom -->
-                  <div class="udown-bottom">
-                  	<a href="#" class="per-set"><i class="fa fa-gear"></i>个人设置</a>
-                  	<a href="#" class="login-out"><i class="fa fa-power-off"></i>退出系统</a>
-                  </div>
-			   </div>
-			</li>
+			<c:if test="${sessionScope.user == null}">
+				<li><a href="${pageContext.request.contextPath}/login.html">登录注册</a></li>
+			</c:if>
+			<c:if test="${sessionScope.user != null}">
+				<li class="udown-tip">
+					<a href="javascript:void(0)">我的</a>
+					<div class="udown-message">
+						<!-- top -->
+						<div class="udown-top">
+							<div class="left">
+								<a href="${pageContext.request.contextPath}/home.html"><img src="../upload/${sessionScope.user.dpPath}" alt=""></a>
+							</div>
+							<div class="right">
+								<div class="head">
+									<p>${sessionScope.user.nickname}</p>
+								</div>
+								<p>${sessionScope.user.intro}</p>
+							</div>
+						</div>
+						<!-- bottom -->
+						<div class="udown-bottom">
+							<a href="${pageContext.request.contextPath}/user/set.html" class="per-set"><i class="fa fa-gear"></i>个人设置</a>
+							<a href="${pageContext.request.contextPath}/logout.html" class="login-out"><i class="fa fa-power-off"></i>退出系统</a>
+						</div>
+					</div>
+				</li>
+			</c:if>
 		</ul>
 	</div>
 </div>
@@ -59,12 +60,6 @@
 		<div class="logo-field">
 			<a href="#"><img src="../images/logo.png" alt=""></a>
 		</div>
-		<form action="">
-			<div class="search-field">
-				<input type="text" placeholder="搜索课程资源" value="" class="search-input">
-				<a href="#"><i class="fa fa-search"></i></a>
-			</div>
-		</form>
 	</div>
 </div>
 <!-- /header-content -->

@@ -45,17 +45,6 @@
                	 	<i class="fa fa-lock"></i>
                	 	<input type="password" value="" name="password" placeholder="请输入密码">
                	 </div>
-               	 <div class="input_div"  style="width:200px;">
-               	 	<i class="fa fa-lock"></i>
-               	 	<input type="text" value="" placeholder="请输入验证码" style="width:165px;">
-               	 	<img src="../images/yanzheng.png" alt="">
-               	 </div>
-               	 <div class="input_line">
-               	 	<label>
-               	 	   <input type="checkbox"> 记住登录
-    			    </label>
-    				<a href="javascript:">忘记密码?</a>
-               	 </div>
                  <input type="button" class="login-btn" onclick="login()" value="登录">
                </form>
            	</div>
@@ -81,16 +70,11 @@
 						   <input type="radio" name="type" value="1" checked>会员
 					   </label>
 					   <label class="radio-inline">
-						   <input type="radio" name="type"  value="3"> 讲师
+						   <input type="radio" name="type"  value="4"> 讲师
 					   </label>
 				   </p>
 
 				   <!-- /身份 -->
-               	 <div class="input_div"  style="width:200px;">
-               	 	<i class="fa fa-lock"></i>
-               	 	<input type="text" value="" placeholder="请输入验证码" style="width:165px;">
-               	 	<img src="../images/yanzheng.png" alt="">
-               	 </div>
                  <input type="button" class="login-btn" onclick="register()" value="注册">
                </form>
            	</div>
@@ -129,7 +113,8 @@
             success:function(data){
                 if(typeof(data)!="object") data=JSON.parse(data);
                 if(data&&data.success){
-                    //转到登录后的页面
+					alert("注册成功！请登录后继续操作。")
+					location.reload();
                 } else {
                     alert(data.message);
                 }
@@ -148,7 +133,11 @@
             success:function(data){
                 if(typeof(data)!="object") data=JSON.parse(data);
                 if(data&&data.success){
-                    alert("登录成功")
+					if(data.message==4) {
+						alert("您未提交信息或信息审核未通过，请填写申请表。")
+						window.location.href='${pageContext.request.contextPath}/teacher/apply.html';
+					}
+					window.location.href='${pageContext.request.contextPath}/home.html';
                 } else {
                     alert(data.message);
                 }

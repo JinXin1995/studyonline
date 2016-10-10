@@ -32,6 +32,11 @@ public class UserServiceImpl implements UserServiceI {
         return (Integer) userDao.save(toEntity(user));
     }
 
+    @Override
+    public User get(int id) {
+        return toModel(userDao.get(UserEntity.class, id));
+    }
+
     public boolean usernameUsed(String username) {
         if(getEntityByName(username) == null) {
             return false;
@@ -63,6 +68,15 @@ public class UserServiceImpl implements UserServiceI {
         UserEntity userEntity = getEntityByName(user.getUsername());
         if(userEntity != null) {
             if (PasswdKit.validatePassword(user.getPassword(), userEntity.getPassword())) {
+                if(userEntity.getType() == UserType.FREEZY_TEACHER || userEntity.getType() == UserType.FREEZY_STUDENT) {
+                    return new JsonResult(false, "账号已被冻结！");
+                }
+                if(userEntity.getType() == UserType.UNVERIFY_TEACHER) {
+                    return new JsonResult(false, "您的信息正在审核中，请耐心等待。");
+                }
+                if(userEntity.getType() == UserType.UNPASS_TEACHER) {
+                    return new JsonResult(true, ""+UserType.UNPASS_TEACHER, toModel(userEntity));
+                }
                 return new JsonResult(true, "", toModel(userEntity));
             }
         }
@@ -123,7 +137,9 @@ public class UserServiceImpl implements UserServiceI {
         if (model.getNickname() == null || "".equals(model.getNickname())) {
             model.setNickname(model.getUsername());
         }
-        model.setInfo(userInfoService.getByUser(model.getId()));
+        if(userInfoService.exists(model.getId())) {
+            model.setInfo(userInfoService.getByUser(model.getId()));
+        }
         return model;
     }
 }

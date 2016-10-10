@@ -61,6 +61,7 @@ public class ProgressServiceImpl implements ProgressServiceI {
             progress.setId(0);
             progress.setCourseId(courseId);
             progress.setUserId(userId);
+            progress.setChapterId(chapterService.getChapters(courseId).get(0).getSubchapter().get(0).getId());
         } else {
             progress = toModel(result.get(0));
         }

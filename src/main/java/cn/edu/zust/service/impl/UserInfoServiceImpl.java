@@ -32,6 +32,9 @@ public class UserInfoServiceImpl implements UserInfoServiceI {
         if(userInfo.getId() == null) {
             userInfo.setId(0);
         }
+        if(exists(userInfo.getUserId())) {
+            userInfo.setId(getByUser(userInfo.getUserId()).getId());
+        }
         userInfoDao.saveOrUpdate(toEntity(userInfo));
     }
 

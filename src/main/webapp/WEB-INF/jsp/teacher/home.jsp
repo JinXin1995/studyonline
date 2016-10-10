@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>讲师index</title>
+	<title>讲师主页</title>
 	<link rel="stylesheet" href="../css/bootstrap.min.css">
 	<link rel="stylesheet" href="../css/fontAwesome/font-awesome.min.css">
 	<link rel="stylesheet" href="../css/base.css">
@@ -20,32 +20,33 @@
 	<div class="wrap-1200">
 		<div class="welcome-title">欢迎来到study-online</div>
 		<ul>
-			<li><a href="#">登录注册</a></li>
-			<li><a href=""><i class="fa  fa-question-circle"></i>帮助</a></li>
-			<li><a href=""><i class="fa fa-bell-o"></i>消息</a></li>
-			<li class="udown-tip">
-			   <a href="javascript:void(0)">我的</a>
-			   <div class="udown-message">
-			   <!-- top -->
-			   	  <div class="udown-top">
-			   	  	<div class="left">
-			   	  		<a href="#"><img src="images/user-img.jpg" alt=""></a>
-			   	  	</div>
-			   	  	<div class="right">
-			   	  		<div class="head">
-			   	  			<p>username</p>
-			   	  			<span>等级：78</span>
-			   	  		</div>
-			   	  		<p>过春风十里,尽荞麦青青</p>
-			   	  	</div>
-			   	  </div>
-			   	  <!-- bottom -->
-                  <div class="udown-bottom">
-                  	<a href="#" class="per-set"><i class="fa fa-gear"></i>个人设置</a>
-                  	<a href="#" class="login-out"><i class="fa fa-power-off"></i>退出系统</a>
-                  </div>
-			   </div>
-			</li>
+			<c:if test="${sessionScope.user == null}">
+				<li><a href="${pageContext.request.contextPath}/login.html">登录注册</a></li>
+			</c:if>
+			<c:if test="${sessionScope.user != null}">
+				<li class="udown-tip">
+					<a href="javascript:void(0)">我的</a>
+					<div class="udown-message">
+						<!-- top -->
+						<div class="udown-top">
+							<div class="left">
+								<a href="${pageContext.request.contextPath}/home.html"><img src="../upload/${sessionScope.user.dpPath}" alt=""></a>
+							</div>
+							<div class="right">
+								<div class="head">
+									<p>${sessionScope.user.nickname}</p>
+								</div>
+								<p>${sessionScope.user.intro}</p>
+							</div>
+						</div>
+						<!-- bottom -->
+						<div class="udown-bottom">
+							<a href="${pageContext.request.contextPath}/user/set.html" class="per-set"><i class="fa fa-gear"></i>个人设置</a>
+							<a href="${pageContext.request.contextPath}/logout.html" class="login-out"><i class="fa fa-power-off"></i>退出系统</a>
+						</div>
+					</div>
+				</li>
+			</c:if>
 		</ul>
 	</div>
 </div>
@@ -57,12 +58,6 @@
 		<div class="logo-field">
 			<a href="#"><img src="../images/logo.png" alt=""></a>
 		</div>
-		<form action="">
-			<div class="search-field">
-				<input type="text" placeholder="搜索课程资源" value="" class="search-input">
-				<a href="#"><i class="fa fa-search"></i></a>
-			</div>
-		</form>
 	</div>
 </div>
 <!-- /header-content -->
@@ -72,10 +67,7 @@
 	<div class="wrap-1200">
 		<ul>
 			<li class="a-home"><a href="#">首页</a></li>
-			<li><a href="#">已发布课程</a></li>
-			<li><a href="#">关注课程</a></li>
-			<li><a href="#">创建课程</a></li>
-			<li><a href="#">个人中心</a></li>
+			<li><a href="${pageContext.request.contextPath}/teacher/addCourse.html">创建课程</a></li>
 		</ul>
 	</div>
 </div>
@@ -97,9 +89,6 @@
 				<li role="presentation" class="active">
 					<a href="#myCreated" role="tab" data-toggle="tab">已发布课程</a>
 				</li>
-				<li role="presentation">
-					<a href="#myConcern"  role="tab" data-toggle="tab">关注课程</a>
-				</li>	    	
 			</ul>
 			<!--内容部分  -->
 			<div class="tab-content">
@@ -120,39 +109,14 @@
 								<h4>${course.name}</h4>
 								<div>${course.introduction}</div>
 								<p>
-									<span>更新中···</span>
-									<span>共5章11节</span>
-									<span>100人在学</span>
-									<span>200人评论</span>
+									<c:if test="${course.status == 0}"><span>未审核</span></c:if>
+									<c:if test="${course.status == 1}"><span>通过审核</span></c:if>
+									<c:if test="${course.status == 2}"><span>未通过审核</span></c:if>
 								</p>
 							</div>
 						</div>
 					</c:forEach>
 
-				</div>
-				<!--关注课程-->
-				<div role="tabpanel" class="tab-pane" id="myConcern">
-                       <div class="tclass-line">
-                     	<div class="left"><a href="#"><img src="../${course.coverPic}" alt=""></a></div>
-                     	<div class="right">
-                     		<button class="btn-click"><i class="fa fa-location-arrow"></i></button>
-                     		<div class="hide-field">
-                     			<a href="#"><img src="../images/user-img.jpg" alt=""></a>
-                     			<a href="#" class="add-concern"><i class="fa  fa-plus-circle "></i>关注</a>
-                     			<p>lalallalla</p>
-                     		</div>
-                     	</div>
-                     	<div class="middle">
-                     		<h4>微信开发巴拉巴拉</h4>
-                     		<div>微信拥有庞大的用户基础，微信公众号的相关开发也比较热门，本套课程就带领大家进入Java微信公众号开发的精彩世界，学习微信公众号开发的相关概念，编辑模式和开发模式应用，以及百度BAE的使用。信公众号开发的精彩世界，学习微信公众号开发的相关概念，编辑模式和开</div>
-                     		<p>
-                     			<span>更新中···</span>
-                     			<span>共5章11节</span>
-                     			<span>100人在学</span>
-                     			<span>200人评论</span>
-                     		</p>
-                     	</div>
-                     </div>
 				</div>
 			</div>
 			<!--/内容部分  -->

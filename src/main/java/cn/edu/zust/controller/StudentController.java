@@ -7,10 +7,12 @@ import cn.edu.zust.model.User;
 import cn.edu.zust.service.ChapterServiceI;
 import cn.edu.zust.service.CourseServiceI;
 import cn.edu.zust.service.ProgressServiceI;
+import cn.edu.zust.service.TypeServiceI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,6 +30,8 @@ public class StudentController extends BaseController {
     ChapterServiceI chapterService;
     @Autowired
     ProgressServiceI progressService;
+    @Autowired
+    TypeServiceI typeService;
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView homePage(HttpSession session) {
@@ -39,10 +43,12 @@ public class StudentController extends BaseController {
     }
 
     @RequestMapping(value = "/content", method = RequestMethod.GET)
-    public ModelAndView courseContent(Integer id) {
+    public ModelAndView courseContent(Integer id, HttpSession  session) {
+        User user = (User) session.getAttribute("user");
         ModelAndView mav = new ModelAndView();
         mav.setViewName("student/course-content");
         mav.addObject("course", courseService.get(id));
+        mav.addObject("progress", progressService.getByCourse(id, user.getId()));
         mav.addObject("chapters", chapterService.getChapters(id));
         return mav;
     }
@@ -67,5 +73,15 @@ public class StudentController extends BaseController {
     public JsonResult deleteProgress(Integer id, HttpSession session) {
         User user = (User) session.getAttribute("user");
         return progressService.delete(user.getId(), id);
+    }
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public ModelAndView listPage(int id,@RequestParam(defaultValue = "1") int pageNo) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("student/course-list");
+        mav.addObject("page", courseService.getByType(id, pageNo));
+        mav.addObject("type", typeService.get(id));
+        mav.addObject("types", typeService.getTypes());
+        return mav;
     }
 }

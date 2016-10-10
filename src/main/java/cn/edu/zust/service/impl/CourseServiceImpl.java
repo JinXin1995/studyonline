@@ -2,11 +2,12 @@ package cn.edu.zust.service.impl;
 
 import cn.edu.zust.dao.BaseDaoI;
 import cn.edu.zust.entity.CourseEntity;
-import cn.edu.zust.entity.TypeEntity;
 import cn.edu.zust.model.Course;
 import cn.edu.zust.model.JsonResult;
+import cn.edu.zust.model.Page;
 import cn.edu.zust.service.CourseServiceI;
 import cn.edu.zust.service.TypeServiceI;
+import cn.edu.zust.service.UserServiceI;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,8 @@ public class CourseServiceImpl implements CourseServiceI {
     BaseDaoI<CourseEntity> courseDao;
     @Autowired
     TypeServiceI typeService;
+    @Autowired
+    UserServiceI userService;
 
     @Override
     public void save(Course course) {
@@ -48,6 +51,30 @@ public class CourseServiceImpl implements CourseServiceI {
             result.add(toModel(entity));
         }
         return result;
+    }
+
+    @Override
+    public Page<Course> getByType(int typeId, int pageNo) {
+        int size = 10;
+        String hql = "from CourseEntity where typeId=:id and status=1";    //获取章节
+        Map<String, Object> value = new HashMap<>();
+        value.put("id", typeId);
+        List<CourseEntity> courseEntities = courseDao.find(hql, value, pageNo, size);
+        List<Course> result = new ArrayList<>();
+        for(CourseEntity entity : courseEntities) {
+            result.add(toModel(entity));
+        }
+        Page<Course> page = new Page<>();
+        page.setPageNo(pageNo);
+        page.setPageSize(size);
+        page.setResult(result);
+        long count = courseDao.find(hql, value).size();
+        int totalPage = (int)count/size;
+        if(count%size > 0) {
+            totalPage++;
+        }
+        page.setTotalPage(totalPage);
+        return page;
     }
 
     @Override
@@ -89,6 +116,7 @@ public class CourseServiceImpl implements CourseServiceI {
         Course model = new Course();
         BeanUtils.copyProperties(entity, model);
         model.setType(typeService.get(model.getTypeId()));
+        model.setTeacherEntity(userService.get(model.getTeacherId()));
         return model;
     }
 }

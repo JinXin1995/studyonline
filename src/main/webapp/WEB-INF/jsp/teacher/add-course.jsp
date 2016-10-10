@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>创建课程step1</title>
+	<title>创建/修改课程、</title>
 	<link rel="stylesheet" href="../css/bootstrap.min.css">
 	<link rel="stylesheet" href="../css/fontAwesome/font-awesome.min.css">
 	<link rel="stylesheet" href="../css/base.css">
@@ -18,37 +18,38 @@
 <body>
 <!-- header-nav -->
 <div class="header-nav">
-	<div class="wrap-1200">
-		<div class="welcome-title">欢迎来到study-online</div>
-		<ul>
-			<li><a href="#">登录注册</a></li>
-			<li><a href=""><i class="fa  fa-question-circle"></i>帮助</a></li>
-			<li><a href=""><i class="fa fa-bell-o"></i>消息</a></li>
-			<li class="udown-tip">
-			   <a href="javascript:void(0)">我的</a>
-			   <div class="udown-message">
-			   <!-- top -->
-			   	  <div class="udown-top">
-			   	  	<div class="left">
-			   	  		<a href="#"><img src="images/user-img.jpg" alt=""></a>
-			   	  	</div>
-			   	  	<div class="right">
-			   	  		<div class="head">
-			   	  			<p>username</p>
-			   	  			<span>等级：78</span>
-			   	  		</div>
-			   	  		<p>过春风十里,尽荞麦青青</p>
-			   	  	</div>
-			   	  </div>
-			   	  <!-- bottom -->
-                  <div class="udown-bottom">
-                  	<a href="#" class="per-set"><i class="fa fa-gear"></i>个人设置</a>
-                  	<a href="#" class="login-out"><i class="fa fa-power-off"></i>退出系统</a>
-                  </div>
-			   </div>
-			</li>
-		</ul>
-	</div>
+    <div class="wrap-1200">
+        <div class="welcome-title">欢迎来到study-online</div>
+        <ul>
+            <c:if test="${sessionScope.user == null}">
+                <li><a href="${pageContext.request.contextPath}/login.html">登录注册</a></li>
+            </c:if>
+            <c:if test="${sessionScope.user != null}">
+                <li class="udown-tip">
+                    <a href="javascript:void(0)">我的</a>
+                    <div class="udown-message">
+                        <!-- top -->
+                        <div class="udown-top">
+                            <div class="left">
+                                <a href="${pageContext.request.contextPath}/home.html"><img src="../upload/${sessionScope.user.dpPath}" alt=""></a>
+                            </div>
+                            <div class="right">
+                                <div class="head">
+                                    <p>${sessionScope.user.nickname}</p>
+                                </div>
+                                <p>${sessionScope.user.intro}</p>
+                            </div>
+                        </div>
+                        <!-- bottom -->
+                        <div class="udown-bottom">
+                            <a href="${pageContext.request.contextPath}/user/set.html" class="per-set"><i class="fa fa-gear"></i>个人设置</a>
+                            <a href="${pageContext.request.contextPath}/logout.html" class="login-out"><i class="fa fa-power-off"></i>退出系统</a>
+                        </div>
+                    </div>
+                </li>
+            </c:if>
+        </ul>
+    </div>
 </div>
 <!-- /header-nav -->
 
@@ -58,27 +59,18 @@
 		<div class="logo-field">
 			<a href="#"><img src="../images/logo.png" alt=""></a>
 		</div>
-		<form action="">
-			<div class="search-field">
-				<input type="text" placeholder="搜索课程资源" value="" class="search-input">
-				<a href="#"><i class="fa fa-search"></i></a>
-			</div>
-		</form>
 	</div>
 </div>
 <!-- /header-content -->
 
 <!-- main-botnav -->
 <div class="main-botnav">
-	<div class="wrap-1200">
-		<ul>
-			<li class="a-home"><a href="#">首页</a></li>
-			<li><a href="#">已发布课程</a></li>
-			<li><a href="#">关注课程</a></li>
-			<li><a href="#">创建课程</a></li>
-			<li><a href="#">个人中心</a></li>
-		</ul>
-	</div>
+    <div class="wrap-1200">
+        <ul>
+            <li class="a-home"><a href="#">首页</a></li>
+            <li><a href="${pageContext.request.contextPath}/teacher/addCourse.html">创建课程</a></li>
+        </ul>
+    </div>
 </div>
 <!-- / main-botnav -->
 <!-- banner -->
@@ -95,7 +87,6 @@
 		<div class="tclass-content">		
 			<!-- step1 -->
          <div class="step">
-             <div class="top step-bg1"></div>
              <div class="content">
                 <form id="courseForm" class="form-step1">
                    <h4>创建/更新课程</h4>
@@ -170,8 +161,7 @@
       <li><a href="#">讲师招聘</a></li>
       <li><a href="#">网站地图</a></li>
 
-      <li class="pull-right"><a href="#">讲师申请</a></li>
-      <li class="pull-right"><a href="#">管理员登录</a></li>
+      <li class="pull-right"><a href="${pageContext.request.contextPath}/administrator/a-login.html">管理员登录</a></li>
    </ul>
    <p>备案号:1234567890123456789</p>
  </div>  

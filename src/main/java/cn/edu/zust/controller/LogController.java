@@ -32,19 +32,12 @@ public class LogController extends BaseController {
     @RequestMapping("register")
     @ResponseBody
     public JsonResult register(User user, String pwdcheck, HttpSession session) {
-        if(user.getType() == null || user.getType() < 3) {
+        if(user.getType() == null || user.getType() < 4) {
             user.setType(UserType.STUDENT);
         } else {
-            user.setType(UserType.UNVERIFY_TEACHER);
+            user.setType(UserType.UNPASS_TEACHER);
         }
         JsonResult result = userService.register(user, pwdcheck);
-        if(result.getSuccess()) {
-            User user1 = (User) result.getData();
-            session.setAttribute("user", user1);
-            if(userInfoService.exists(user1.getId())) {
-                session.setAttribute("userInfo", userInfoService.getByUser(user1.getId()));
-            }
-        }
         return result;
     }
 
@@ -65,6 +58,8 @@ public class LogController extends BaseController {
             return "redirect:study/home.html";
         } else if(user.getType() == UserType.TEACHER) {
             return "redirect:teacher/home.html";
+        } else if(user.getType() == UserType.UNPASS_TEACHER) {
+            return "redirect:teacher/apply.html";
         } else {
             return "redirect:login.html";
         }

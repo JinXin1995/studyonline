@@ -20,39 +20,34 @@
 <div class="header-nav">
 	<div class="wrap-1200">
 	    <a href="#" class="headerNav-logo"><img src="../images/logo.png" alt=""></a>
-		<form action="">
-			<div class="search-field">
-				<input type="text" placeholder="搜索课程资源" value="" class="search-input">
-				<a href="#"><i class="fa fa-search"></i></a>
-			</div>
-		</form>
 		<ul>
-			<li><a href="#">登录注册</a></li>
-			<li><a href=""><i class="fa  fa-question-circle"></i>帮助</a></li>
-			<li><a href=""><i class="fa fa-bell-o"></i>消息</a></li>
-			<li class="udown-tip">
-			   <a href="javascript:void(0)">我的</a>
-			   <div class="udown-message">
-			   <!-- top -->
-			   	  <div class="udown-top">
-			   	  	<div class="left">
-			   	  		<a href="#"><img src="../images/user-img.jpg" alt=""></a>
-			   	  	</div>
-			   	  	<div class="right">
-			   	  		<div class="head">
-			   	  			<p>username</p>
-			   	  			<span>等级：78</span>
-			   	  		</div>
-			   	  		<p>过春风十里,尽荞麦青青</p>
-			   	  	</div>
-			   	  </div>
-			   	  <!-- bottom -->
-                  <div class="udown-bottom">
-                  	<a href="#" class="per-set"><i class="fa fa-gear"></i>个人设置</a>
-                  	<a href="#" class="login-out"><i class="fa fa-power-off"></i>退出系统</a>
-                  </div>
-			   </div>
-			</li>
+			<c:if test="${sessionScope.user == null}">
+				<li><a href="${pageContext.request.contextPath}/login.html">登录注册</a></li>
+			</c:if>
+			<c:if test="${sessionScope.user != null}">
+				<li class="udown-tip">
+					<a href="javascript:void(0)">我的</a>
+					<div class="udown-message">
+						<!-- top -->
+						<div class="udown-top">
+							<div class="left">
+								<a href="${pageContext.request.contextPath}/home.html"><img src="../upload/${sessionScope.user.dpPath}" alt=""></a>
+							</div>
+							<div class="right">
+								<div class="head">
+									<p>${sessionScope.user.nickname}</p>
+								</div>
+								<p>${sessionScope.user.intro}</p>
+							</div>
+						</div>
+						<!-- bottom -->
+						<div class="udown-bottom">
+							<a href="${pageContext.request.contextPath}/user/set.html" class="per-set"><i class="fa fa-gear"></i>个人设置</a>
+							<a href="${pageContext.request.contextPath}/logout.html" class="login-out"><i class="fa fa-power-off"></i>退出系统</a>
+						</div>
+					</div>
+				</li>
+			</c:if>
 		</ul>
 	</div>
 </div>
@@ -63,8 +58,8 @@
 	<div class="wrap-1200">
 		<!-- 导航 -->
 		<ol class="breadcrumb">
-			<li><a href="#">首页</a></li>
-			<li><a href="#">${course.type.name}</a></li>
+			<li><a href="${pageContext.request.contextPath}/index.html">首页</a></li>
+			<li><a href="${pageContext.request.contextPath}/study/list.html?id=${course.type.id}">${course.type.name}</a></li>
 		</ol>
 		<span>${course.name}</span>
 	</div>
@@ -84,7 +79,10 @@
 					<div>
 						${course.introduction}
 					</div>
-					<a href="#" class="btn btn-sm btn-success pull-right">开始学习</a>
+					<a href="${pageContext.request.contextPath}/study/learning.html?id=${progress.chapterId}" class="btn btn-sm btn-success pull-right">
+						<c:if test="${progress.id == 0}">开始学习</c:if>
+						<c:if test="${progress.id != 0}">继续学习</c:if>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -143,27 +141,16 @@
             	<div class="top">
             		<a href="#"><img src="../images/user-img.jpg" alt=""></a>
             		<div class="user-header">
-            			<p class="u-name"><strong>木木和弦</strong></p>
-            			<p class="u-pos">职业：软件开发工程师</p>
+            			<p class="u-name"><strong>${course.teacherEntity.info.realname}</strong></p>
+            			<p class="u-pos">曾工作单位：${course.teacherEntity.info.company}</p>
             		</div>
             	</div>
             	<div class="intro-content">
-            		<p><strong>讲师介绍</strong></p>
+            		<p><strong>个人签名</strong></p>
             		<div>
-            			1988年毕业于杭州师范学院外语系，同年担任杭州电子工学院英文及国际贸易教师，1995年创办中国第一家互联网商业信息发布网站“中国黄页”，1998年出任中国国际电子商务中心国富通信息技术发展有限公司总经理，1999年创办阿里巴巴，并担任阿里集团CEO、董事局主席，2013年5月10日，辞任阿里巴巴集团CEO，继续担任阿里集团董事局主席。[2]  6月30日，马云当选全球互联网治理联盟理事会联合主席
-            		</div>
+						${course.teacherEntity.intro}
+					</div>
             	</div>
-            </div>
-			<!-- 推荐 -->
-			<div class="t-intro-field mt-20">
-            	<div class="title">小编推荐</div>
-            	<ul>
-            		<li><a href="#"><img src="../images/class_01.jpg" alt="">十天精通HTML</a></li>
-            		<li><a href="#"><img src="../images/class_02.jpg" alt="">微信开发工具</a></li>
-            		<li><a href="#"><img src="../images/class_01.jpg" alt="">JS从入门到精通</a></li>
-            		<li><a href="#"><img src="../images/class_02.jpg" alt="">Jqery插件</a></li>
-            		<li><a href="#"><img src="../images/class_01.jpg" alt="">十天精通HTML</a></li>
-            	</ul>
             </div>
 		</div>
 	</div>
@@ -182,8 +169,7 @@
 		<li><a href="#">讲师招聘</a></li>
 		<li><a href="#">网站地图</a></li>
 
-		<li class="pull-right"><a href="#">讲师申请</a></li>
-		<li class="pull-right"><a href="#">管理员登录</a></li>
+		<li class="pull-right"><a href="${pageContext.request.contextPath}/administrator/a-login.html">管理员登录</a></li>
 	</ul>
 	<p>备案号:1234567890123456789</p>
  </div>	

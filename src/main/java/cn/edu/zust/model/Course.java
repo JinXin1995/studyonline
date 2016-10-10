@@ -19,6 +19,7 @@ public class Course {
     private Type type;
     private Integer typeId;
     private Integer teacherId;
+    private User teacherEntity;
     private Integer chapter;//总的章节数
     private String statuszhuangtai;//前端显示状态
     private String teacher;//讲师用户名
@@ -167,5 +168,13 @@ public class Course {
 
     public void setTeacherId(Integer teacherId) {
         this.teacherId = teacherId;
+    }
+
+    public User getTeacherEntity() {
+        return teacherEntity;
+    }
+
+    public void setTeacherEntity(User teacherEntity) {
+        this.teacherEntity = teacherEntity;
     }
 }
