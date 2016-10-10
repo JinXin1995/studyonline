@@ -59,6 +59,12 @@
 		<div class="logo-field">
 			<a href="#"><img src="images/logo.png" alt=""></a>
 		</div>
+		<form action="">
+			<div class="search-field">
+				<input type="text" placeholder="搜索课程资源" value="" class="search-input">
+				<a href="#"><i class="fa fa-search"></i></a>
+			</div>
+		</form>
 	</div>
 </div>
 <!-- /header-content -->

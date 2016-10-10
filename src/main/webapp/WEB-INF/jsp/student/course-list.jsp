@@ -59,6 +59,12 @@
 		<div class="logo-field">
 			<a href="#"><img src="../images/logo.png" alt=""></a>
 		</div>
+		<form action="">
+			<div class="search-field">
+				<input type="text" placeholder="搜索课程资源" value="" class="search-input">
+				<a href="#"><i class="fa fa-search"></i></a>
+			</div>
+		</form>
 	</div>
 </div>
 <!-- /header-content -->
@@ -104,7 +110,7 @@
 				<li><a href="${pageContext.request.contextPath}/study/list.html?id=${type.id}&pageNo=${page.pageNo - 1}">${page.pageNo - 1}</a></li>
 			</c:if>
 
-			<li style="background-color: #0000FF"><a style="background-color: #0000FF">${page.pageNo}</a></li>
+			<li class="active"><a>${page.pageNo}</a></li>
 
 			<c:if test="${page.pageNo < page.totalPage}">
 				<li><a href="${pageContext.request.contextPath}/study/list.html?id=${type.id}&pageNo=${page.pageNo + 1}">${page.pageNo + 1}</a></li>

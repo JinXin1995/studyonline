@@ -79,7 +79,32 @@
                         <c:if test="${userinfo.status == 2}"><a href="${pageContext.request.contextPath}/administrator/a-chapterpass.html?pass=1&id=<c:out value="${userinfo.id}"></c:out>&cid=<c:out value="${classid}"></c:out>" class="btn btn-xs btn-info">通过审核</a></c:if>
                     </td>
                     <td>
-                        <a class="btn btn-danger btn-xs" href="${pageContext.request.contextPath}/administrator/a-dechapter.html?id=<c:out value="${userinfo.id}"></c:out>&cid=<c:out value="${classid}"></c:out>">删除课程</a>
+                        <a class="btn btn-danger btn-xs" >删除课程</a>
+                     <!-- 用弹框的时候 -->
+                        <button class="btn btn-danger btn-xs btn-del-tag" type="button">删除课程</button> <!-- 删除弹框 -->
+									<div class="modal fade bs-example-modal-sm" 
+										 role="dialog"
+										aria-labelledby="mySmallModalLabel" aria-hidden="true">
+										<div class="modal-dialog modal-sm">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal">
+														<span aria-hidden="true">&times;</span><span
+															class="sr-only">Close</span>
+													</button>
+													<h4 class="modal-title" id="myModalLabel">
+														<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>警告
+													</h4>
+												</div>
+												<div class="modal-body">删除后不可恢复，确定删除吗？</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-default btn-sm"
+														data-dismiss="modal">取消</button>
+													<a class="btn btn-danger btn-sm" href="${pageContext.request.contextPath}/administrator/a-dechapter.html?id=<c:out value="${userinfo.id}"></c:out>&cid=<c:out value="${classid}"></c:out>">确定</a>
+												</div>
+											</div>
+										</div>
+									</div> <!-- /删除弹框 -->
                     </td>
                 </tr>
             </c:forEach>
@@ -106,13 +131,19 @@
             </li>
 
             <li>
-                第<c:out value="${now}"></c:out>页
+                <a herf="#">第<c:out value="${now}"></c:out>页</a>
             </li>
 
 
         </ul>
     </nav>
 </div>
-
+<script>
+   $(function(){
+	   $('.btn-del-tag').click(function(){
+		   $(this).next().modal('show');
+	   })
+   })
+</script>
 </body>
 </html>

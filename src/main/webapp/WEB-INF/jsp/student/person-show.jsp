@@ -60,6 +60,12 @@
 		<div class="logo-field">
 			<a href="#"><img src="../images/logo.png" alt=""></a>
 		</div>
+		<form action="">
+			<div class="search-field">
+				<input type="text" placeholder="搜索课程资源" value="" class="search-input">
+				<a href="#"><i class="fa fa-search"></i></a>
+			</div>
+		</form>
 	</div>
 </div>
 <!-- /header-content -->
@@ -92,6 +98,9 @@
 	    <div class="right">
 	    	<!--内容部分  -->
 	    	<div class="tab-content">
+	    	<div class="top">
+	    		   	   <a href="#" class="active">最近学习</a>
+	    		   	</div>
 	    		<!--课程区-->
 	    		<div role="tabpanel" class="tab-pane active" id="mper_course">
 					<c:forEach var="progress" items="${progresses}">

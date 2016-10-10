@@ -64,7 +64,6 @@
 			<li><a href="${pageContext.request.contextPath}/index.html">首页</a></li>
 			<li class="active">个人设置</li>
 		</ol>
-		<span>微信公众号的开发</span>
 	</div>
 </div>
 

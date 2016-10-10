@@ -87,7 +87,32 @@
                     <a class="btn btn-info btn-xs" href="${pageContext.request.contextPath}/administrator/a-ice.html?id=<c:out value="${userinfo.userId}"></c:out>">冻结学员</a>
                 </td>
                 <td>
-                    <a class="btn btn-danger btn-xs" href="${pageContext.request.contextPath}/administrator/a-deuser.html?id=<c:out value="${userinfo.userId}"></c:out>">删除</a>
+                    <a class="btn btn-danger btn-xs" >删除</a>
+                    <!-- 用弹框的时候 -->
+                        <button class="btn btn-danger btn-xs btn-del-tag" type="button">删除</button> <!-- 删除弹框 -->
+									<div class="modal fade bs-example-modal-sm" 
+										 role="dialog"
+										aria-labelledby="mySmallModalLabel" aria-hidden="true">
+										<div class="modal-dialog modal-sm">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal">
+														<span aria-hidden="true">&times;</span><span
+															class="sr-only">Close</span>
+													</button>
+													<h4 class="modal-title" id="myModalLabel">
+														<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>警告
+													</h4>
+												</div>
+												<div class="modal-body">删除后不可恢复，确定删除吗？</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-default btn-sm"
+														data-dismiss="modal">取消</button>
+													<a class="btn btn-danger btn-sm" href="${pageContext.request.contextPath}/administrator/a-deuser.html?id=<c:out value="${userinfo.userId}"></c:out>">确定</a>
+												</div>
+											</div>
+										</div>
+									</div> <!-- /删除弹框 -->
                 </td>
             </tr>
             </c:forEach>
@@ -113,7 +138,7 @@
                 </li>
 
                 <li>
-                    第<c:out value="${now}"></c:out>页
+                   <a herf="#"> 第<c:out value="${now}"></c:out>页</a>
                 </li>
 
 
@@ -121,5 +146,13 @@
         </nav>
     </div>
 </div>
+
+<script>
+   $(function(){
+	   $('.btn-del-tag').click(function(){
+		   $(this).next().modal('show');
+	   })
+   })
+</script>
 </body>
 </html>
