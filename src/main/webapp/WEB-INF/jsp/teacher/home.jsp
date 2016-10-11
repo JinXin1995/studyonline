@@ -73,6 +73,7 @@
 	<div class="wrap-1200">
 		<ul>
 			<li class="a-home"><a href="#">首页</a></li>
+			<li><a href="${pageContext.request.contextPath}/home.html">我的课程</a> </li>
 			<li><a href="${pageContext.request.contextPath}/teacher/addCourse.html">创建课程</a></li>
 		</ul>
 	</div>
