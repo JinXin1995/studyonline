@@ -55,7 +55,7 @@ public class CourseServiceImpl implements CourseServiceI {
 
     @Override
     public Page<Course> getByType(int typeId, int pageNo) {
-        int size = 10;
+        int size = 17;
         String hql = "from CourseEntity where typeId=:id and status=1";    //获取章节
         Map<String, Object> value = new HashMap<>();
         value.put("id", typeId);
