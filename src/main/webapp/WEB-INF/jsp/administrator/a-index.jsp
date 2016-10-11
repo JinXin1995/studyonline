@@ -87,7 +87,7 @@
                     <a class="btn btn-info btn-xs" href="${pageContext.request.contextPath}/administrator/a-ice.html?id=<c:out value="${userinfo.userId}"></c:out>">冻结学员</a>
                 </td>
                 <td>
-                    <a class="btn btn-danger btn-xs" >删除</a>
+                   
                     <!-- 用弹框的时候 -->
                         <button class="btn btn-danger btn-xs btn-del-tag" type="button">删除</button> <!-- 删除弹框 -->
 									<div class="modal fade bs-example-modal-sm" 

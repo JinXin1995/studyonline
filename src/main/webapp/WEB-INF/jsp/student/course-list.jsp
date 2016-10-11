@@ -57,7 +57,7 @@
 <div class="header-content">
 	<div class="wrap-1200">
 		<div class="logo-field">
-			<a href="#"><img src="../images/logo.png" alt=""></a>
+			<a href="${pageContext.request.contextPath}/index.html"><img src="../images/logo.png" alt=""></a>
 		</div>
 		<form action="">
 			<div class="search-field">
@@ -93,7 +93,7 @@
 			</a>
 		</c:forEach>
 
-		<ul class="pagination pagination-sm">
+		<ul class="pagination pagination-sm" style="text-align:center;">
 			<c:if test="${page.pageNo > 1}">
 				<li><a href="${pageContext.request.contextPath}/study/list.html?id=${type.id}&pageNo=${page.pageNo - 1}">&laquo;</a></li>
 			</c:if>
@@ -130,7 +130,6 @@
 				<li><a href="${pageContext.request.contextPath}/study/list.html?id=${type.id}&pageNo=${page.pageNo + 1}">&raquo;</a></li>
 			</c:if>
 		</ul>
-
 	</div>
 	<!-- <a class="btn btn-default btn-xs click-tag">查看更多</a> -->
 	

@@ -19,7 +19,7 @@
 <!-- header-nav -->
 <div class="header-nav">
 	<div class="wrap-1200">
-	    <a href="#" class="headerNav-logo"><img src="../images/logo.png" alt=""></a>
+	    <a href="${pageContext.request.contextPath}/index.html" class="headerNav-logo"><img src="../images/logo.png" alt=""></a>
 		<ul>
 			<c:if test="${sessionScope.user == null}">
 				<li><a href="${pageContext.request.contextPath}/login.html">登录注册</a></li>

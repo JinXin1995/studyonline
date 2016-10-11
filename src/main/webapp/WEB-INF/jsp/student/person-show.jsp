@@ -58,7 +58,7 @@
 <div class="header-content">
 	<div class="wrap-1200">
 		<div class="logo-field">
-			<a href="#"><img src="../images/logo.png" alt=""></a>
+			<a href="${pageContext.request.contextPath}/index.html"><img src="../images/logo.png" alt=""></a>
 		</div>
 		<form action="">
 			<div class="search-field">
