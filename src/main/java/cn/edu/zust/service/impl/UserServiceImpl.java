@@ -5,6 +5,7 @@ import cn.edu.zust.entity.UserEntity;
 import cn.edu.zust.info.UserType;
 import cn.edu.zust.model.JsonResult;
 import cn.edu.zust.model.User;
+import cn.edu.zust.model.UserInfo;
 import cn.edu.zust.service.UserInfoServiceI;
 import cn.edu.zust.service.UserServiceI;
 import cn.edu.zust.util.PasswdKit;
@@ -55,7 +56,10 @@ public class UserServiceImpl implements UserServiceI {
             return new JsonResult(false, "该用户名已注册！");
         }
         user.setPassword(PasswdKit.entryptPassword(user.getPassword()));
-        save(user);
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUserId(save(user));
+        userInfo.setId(0);
+        userInfoService.save(userInfo);
         return new JsonResult(true);
     }
 
